@@ -8,7 +8,7 @@ unified-delay: true
 log-level: silent
 ipv6: true
 external-controller: 0.0.0.0:9090
-external-ui: ./dashboard/Yacd
+external-ui: ./dashboard/metacubexd
 secret: ""
 tcp-concurrent: true
 enable-process: true
