@@ -121,7 +121,7 @@ u: &u
 proxy-providers:
   provider1:
     <<: *p
-    url: "https://pastebin.com/raw/ss6vuaDS"
+    url: "引入您的Clash订阅链接地址"
     path: ./provide/subscription1.yaml
     #注意！如果您的订阅链接中带有“&”字符，请删掉.
   provider2:
