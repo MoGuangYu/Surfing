@@ -31,7 +31,7 @@ if [ -d /data/adb/box_bll ] ; then
   cp /data/adb/box_bll/clash/config.yaml /data/adb/box_bll/clash/config.yaml.bak
   cp /data/adb/box_bll/scripts/box.config /data/adb/box_bll/scripts/box.config.bak
   
-  rm -rf /data/adb/box_bll/clash/dashboard/Yacd
+  rm -rf /data/adb/box_bll/clash/dashboard/metacubexd
   cp -rf $MODPATH/box_bll/* /data/adb/box_bll/
   rm -rf $MODPATH/box_bll
   mv /data/adb/box_bll/clash/cache_tmp.db /data/adb/box_bll/clash/cache.db
