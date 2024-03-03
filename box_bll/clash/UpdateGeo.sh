@@ -21,9 +21,9 @@ else
 fi
 
 # 定义数据库文件的下载链接
-geoip_url="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
-geosite_url="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
-mmdb_url="https://github.com/Loyalsoldier/geoip/releases/latest/download/Country.mmdb"
+geoip_url="https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/release/geoip.dat"
+geosite_url="https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/release/geosite.dat"
+mmdb_url="https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/release/country.mmdb"
 
 # 定义数据库文件的存放路径
 database_dir="/data/adb/box_bll/clash/"
