@@ -43,6 +43,7 @@ if [ -d /data/adb/box_bll ] ; then
   mv /data/adb/box_bll/clash/geosite_tmp.dat /data/adb/box_bll/clash/geosite.dat
   mv /data/adb/box_bll/clash/country_tmp.mmdb /data/adb/box_bll/clash/country.mmdb
 
+  mkdir /data/adb/box_bll/clash/dashboard/metacubexd
   ln -s /data/adb/modules/Surfing/webroot/* /data/adb/box_bll/clash/dashboard/metacubexd
 
   ui_print "- 正在更新..."
