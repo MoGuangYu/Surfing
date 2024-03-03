@@ -120,7 +120,7 @@ Please decide whether to use the Surfing module only after clearly understanding
 - Module updates will not include updates to database files:
    - geoip.dat, geosite.dat, country.mmdb
 
-- Module updates will not include updates to database files. You can manually update them through the Web Yacd configuration page or the script.
+- Module updates will not include updates to database files. You can manually update them through the Web metacubexd configuration page or the script.
 
 > Note: Updates mainly follow the upstream updates and issue some configurations.
 </details>
