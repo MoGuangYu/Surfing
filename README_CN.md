@@ -124,7 +124,7 @@ GitHub Actions 北京时间每天早上 6 点自动构建，保证规则最新  
 - 更新模块并不会覆盖数据库文件
    - geoip.dat、geosite.dat、country.mmdb
 
-- 更新模块不再包含数据库文件更新，至 Web Yacd-配置选项页，进行手动更新即可，亦或者脚本
+- 更新模块不再包含数据库文件更新，至 Web metacubexd-配置选项页，进行手动更新即可，亦或者脚本
 
 > Ps：主要跟随上游更新，及下发一些配置
 </details>
