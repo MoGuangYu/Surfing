@@ -1329,7 +1329,7 @@ delete_files_and_dirs() {
     echo
     echo "↴"
     read -r -p "确定要继续吗？(y/n): " confirm
-    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    if [[ "$confirm" != ^[Yy]$ ]]; then
         read -r -p "请输入'确认'以继续删除，直接回车取消: " input
         if [[ "$input" == "确认" ]]; then
             echo "↴"
