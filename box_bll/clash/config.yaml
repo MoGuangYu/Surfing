@@ -2,8 +2,8 @@
 mixed-port: 7890
 redir-port: 7891
 tproxy-port: 1536
+ipv6: true
 mode: Rule
-ipv6: true # false 此为不代理ipv6流量节点
 allow-lan: true
 geo-auto-update: true
 geo-update-interval: 24
@@ -140,17 +140,15 @@ dns:
     - 223.5.5.5
     - 223.6.6.6
   proxy-server-nameserver:
-    - 119.29.29.29
-    - 1.12.12.12
-    - 223.5.5.5
-    - 223.6.6.6
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   nameserver-policy:
     "RULE-SET:CN_域名,CN_IP":
-      - https://doh.pub/dns-query#🌎 全球直连
-      - https://dns.alidns.com/dns-query#🌎 全球直连
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
   nameserver:
-    - https://dns.google/dns-query#🌐 DNS解析
-    - https://cloudflare-dns.com/dns-query#🌐 DNS解析
+    - https://dns.google/dns-query#DNS解析
+    - https://cloudflare-dns.com/dns-query#DNS解析
 # —————————
 
 proxies:
