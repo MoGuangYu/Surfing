@@ -106,16 +106,16 @@ tun:
   exclude-package: # 游戏卡顿可添加包名 仅Android
     #- com.tencent.tmgp.sgame
     # _____________________# 三星专供 ↓ 范围
-    - com.samsung.android.messaging
-    - com.samsung.android.app.telephonyui
-    - com.samsung.android.dialer
-    - com.samsung.android.incallui
-    - com.samsung.android.smartcallprovider
-    - com.samsung.android.intellivoiceservice
-    - com.android.settings
-    - com.qti.qcc
-    - com.sec.epdg
-    - com.sec.imsservice # 三星专供 ↑ 范围
+#    - com.samsung.android.messaging
+#    - com.samsung.android.app.telephonyui
+#    - com.samsung.android.dialer
+#    - com.samsung.android.incallui
+#    - com.samsung.android.smartcallprovider
+#    - com.samsung.android.intellivoiceservice
+#    - com.android.settings
+#    - com.qti.qcc
+#    - com.sec.epdg
+#    - com.sec.imsservice # 三星专供 ↑ 范围
     # 如果你不是不必理会
     
 # —————————
