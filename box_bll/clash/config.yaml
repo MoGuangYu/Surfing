@@ -16,7 +16,7 @@ find-process-mode: always
 global-client-fingerprint: chrome
 external-controller: 0.0.0.0:9090
 #面板默认 Meta 可选 Yacd / Zash 重启模块即可加载
-external-ui: /data/adb/box_bll/panel/Zash/
+external-ui: /data/adb/box_bll/panel/Zash/ # 主推zash
 secret: ""
 # —————————
 #####################
@@ -35,7 +35,7 @@ p: &p
 
 # 订阅地址相关
 A: &A
-  filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
+  filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
   use:
   - 1.主要地址
   - 2.备用地址
@@ -51,15 +51,22 @@ All: &All
 proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↓
   1.主要地址:
     <<: *p
+    override:
+      additional-prefix: "Mian："
     url: "引入您的Clash订阅链接地址"
-    
+
   2.备用地址:
     <<: *p
+    override:
+      additional-prefix: "Minor："
     url: "引入您的Clash订阅链接地址"
-  
+
   3.额外地址:
     <<: *p
+    override:
+      additional-prefix: "Additi："
     url: "引入您的Clash订阅链接地址"
+
 # —————————
 
 # 节点记忆
@@ -190,15 +197,15 @@ proxy-groups:
       - 🌎 全球直连
 # —————————
 
-  - name: 电报信息
+  - name: Telegram
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Telegram.svg"
     <<: *proxy_groups
     
-  - name: 苹果服务
+  - name: Apple
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Apple.svg"
     <<: *proxy_groups
     
-  - name: 微软服务
+  - name: Microsoft
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Microsoft.svg"
     <<: *proxy_groups
 
@@ -214,24 +221,32 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/TikTok.svg"
     <<: *proxy_groups
 
-  - name: 油管媒体
+  - name: YouTube
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/YouTube.svg"
     <<: *proxy_groups
 
-  - name: 奈飞媒体
+  - name: Netflix
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Netflix.svg"
     <<: *proxy_groups
 
-  - name: 脸书社交
+  - name: Facebook
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Facebook.svg"
     <<: *proxy_groups
 
-  - name: 谷歌服务
+  - name: Google
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Google.svg"
     <<: *proxy_groups
 
-  - name: 谷歌推送
+  - name: GoogleFCM
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/GoogleFCM.svg"
+    <<: *proxy_groups
+
+  - name: GitHub
+    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/GitHub.svg"
+    <<: *proxy_groups
+
+  - name: Twitter(X)
+    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Twitter.svg"
     <<: *proxy_groups
 
   - name: DNS解析
@@ -243,7 +258,7 @@ proxy-groups:
     <<: *proxy_groups
 
   - name: 广告拦截
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Anti-ads-all.svg"
+    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/No-ads-all.svg"
     type: select
     proxies:
       - ⛔️ 拒绝连接
@@ -316,9 +331,9 @@ rule-providers:
     <<: *RuleDefault
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/cn.list"
 
-  anti-ads-all:
+  No-ads-all:
     <<: *RuleDefault
-    url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge.txt"
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/category-ads-all.list"
 
   TikTok:
     <<: *RuleDefault
@@ -363,22 +378,32 @@ rule-providers:
   Discord:
     <<: *RuleDefault
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Discord/Discord.list"
+
+  GitHub:
+    <<: *RuleDefault
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GitHub/GitHub.list"
+
+  Twitter:
+    <<: *RuleDefault
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Twitter/Twitter.list"
 # —————————
 
 rules:
   - DST-PORT,53,🌐 DNS_Hijack
-  - RULE-SET,anti-ads-all,广告拦截
+  - RULE-SET,No-ads-all,广告拦截
+  - RULE-SET,Twitter,Twitter(X)
+  - RULE-SET,GitHub,GitHub
   - RULE-SET,Discord,Discord
   - RULE-SET,TikTok,TikTok
-  - RULE-SET,YouTube,油管媒体
-  - RULE-SET,Netflix,奈飞媒体
-  - RULE-SET,Facebook,脸书社交
+  - RULE-SET,YouTube,YouTube
+  - RULE-SET,Netflix,Netflix
+  - RULE-SET,Facebook,Facebook
   - RULE-SET,OpenAI,OpenAI
-  - RULE-SET,GoogleFCM,谷歌推送
-  - RULE-SET,Google,谷歌服务
-  - RULE-SET,Apple,苹果服务
-  - RULE-SET,Microsoft,微软服务
-  - RULE-SET,Telegram,电报信息
+  - RULE-SET,GoogleFCM,GoogleFCM
+  - RULE-SET,Google,Google
+  - RULE-SET,Apple,Apple
+  - RULE-SET,Microsoft,Microsoft
+  - RULE-SET,Telegram,Telegram
   - RULE-SET,CN_域名,🌎 全球直连
   - RULE-SET,CN_IP,🌎 全球直连
   - RULE-SET,private_Lan,🌎 全球直连,no-resolve
