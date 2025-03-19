@@ -1,0 +1,9 @@
+推送版本号: v6.3.5
+
+更新日志: {
+更新内容：
+1、优化一些已知问题...
+}
+
+强制更新: 关
+下载链接: https://github.com/MoGuangYu/Surfing/raw/refs/heads/main/folder/Web_6.3.5_release.apk
