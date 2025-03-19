@@ -1,3 +1,4 @@
+return _G.Remotehotupdate
 local hotupdate = "true"
 _G.Remotehotupdate = hotupdate
 if _G.Remotehotupdate == "false" then
@@ -36,7 +37,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 input.setHint("http:// 或 https:// 开头...")
                 builder.setView(input)
                 builder.setPositiveButton("确定", function(dialog, which)
-                    local url = input.getText().toString()
+                    local url = input.getText():toString()
                     if url ~= "" and string.match(url, "^https?://[%w%._%-]+[%w%._%/?&%=%-]*") then
                         defaultUrl = url
                         webView.loadUrl(defaultUrl)
@@ -55,9 +56,18 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 builder.show()
             end
 
-            menu.add("纯ipv6测试").onMenuItemClick = function(a)
-                local url = "https://ipv6.test-ipv6.com/"
-                webView.loadUrl(url)
+            menu.add("IP 检查").onMenuItemClick = function(a)
+                local subPop = PopupMenu(activity, more)
+                local subMenu = subPop.Menu
+                subMenu.add("纯IPv6测试").onMenuItemClick = function(b)
+                    local url = "https://ipv6.test-ipv6.com/"
+                    webView.loadUrl(url)
+                end
+                subMenu.add("IPW").onMenuItemClick = function(b)
+                    local url = "https://ipw.cn/"
+                    webView.loadUrl(url)
+                end
+                subPop.show()
             end
 
             menu.add("切换面板").onMenuItemClick = function(a)
@@ -122,7 +132,6 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 local startVersion = #ssb
                 ssb.append(metadataTitle)
                 local endVersion = #ssb
-                ssb.setSpan(StyleSpan(Typeface.BOLD), startVersion, endVersion, 0)
                 ssb.setSpan(StyleSpan(Typeface.BOLD), startVersion, endVersion, 0)
                 ssb.setSpan(ForegroundColorSpan(0xFF000000), startVersion, endVersion, 0)
                 ssb.setSpan(RelativeSizeSpan(1.2), startVersion, endVersion, 0)
@@ -192,7 +201,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
             pop.show()
         end
     else
-        
+        -- 失败处理逻辑
     end
 end)
 
