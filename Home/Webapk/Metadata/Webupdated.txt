@@ -1,4 +1,4 @@
-推送版本号: v6.3.5
+推送版本号: v6.3.6
 
 更新日志: {
 更新内容：
@@ -6,4 +6,4 @@
 }
 
 强制更新: 关
-下载链接: https://github.com/MoGuangYu/Surfing/raw/refs/heads/main/folder/Web_6.3.5_release.apk
+下载链接: https://github.com/MoGuangYu/Surfing/raw/refs/heads/rm/Home/Webapk/Version/Web_6.3.6_release.apk
