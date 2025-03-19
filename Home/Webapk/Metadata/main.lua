@@ -58,12 +58,12 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
             menu.add("IP 检查").onMenuItemClick = function(a)
                 local subPop = PopupMenu(activity, more)
                 local subMenu = subPop.Menu
-                subMenu.add("纯IPv6测试").onMenuItemClick = function(b)
-                    local url = "https://ipv6.test-ipv6.com/"
+                subMenu.add("IPW_CN").onMenuItemClick = function(b)
+                    local url = "https://ipw.cn/"
                     webView.loadUrl(url)
                 end
-                subMenu.add("IPW").onMenuItemClick = function(b)
-                    local url = "https://ipw.cn/"
+                subMenu.add("纯IPv6测试").onMenuItemClick = function(b)
+                    local url = "https://ipv6.test-ipv6.com/"
                     webView.loadUrl(url)
                 end
                 subPop.show()
