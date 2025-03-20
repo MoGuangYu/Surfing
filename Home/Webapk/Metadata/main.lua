@@ -156,7 +156,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 ssb.setSpan(ForegroundColorSpan(0xFF888888), startContent, endContent, 0)
                 ssb.setSpan(RelativeSizeSpan(0.9), startContent, endContent, 0)
 
-                local copyrightText = "@Surfing Webbrowser 2023."
+                local copyrightText = "@Surfing Webbrowser 2023.\nMail：staryuboy@gmail.com"
                 local startCopyright = #ssb
                 ssb.append(copyrightText)
                 local endCopyright = #ssb
