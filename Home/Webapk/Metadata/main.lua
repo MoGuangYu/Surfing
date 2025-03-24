@@ -170,7 +170,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 local builder = AlertDialog.Builder(activity)
                 builder.setView(textView)
                 builder.setNegativeButton("Git", function(dialog, which)
-                    activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/MoGuangYu/rules")))
+                    activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/MoGuangYu/Surfing")))
                 end)
                 builder.setPositiveButton("少儿频道", function(dialog, which)
                     activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/+vvlXyWYl6HowMTBl")))
