@@ -8,11 +8,11 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
     if code == 200 and content then
         local pushNotification = content:match("推送通知:%s*(.-)\n") or "关"
         local menuTitle = content:match("菜单标题:%s*(.-)\n") or "信息通知"
-
+        
         more.onClick = function()
             local pop = PopupMenu(activity, more)
             local menu = pop.Menu
-
+            
             menu.add("清除数据").onMenuItemClick = function(a)
                 local builder = AlertDialog.Builder(activity)
                 builder.setTitle("注意")
@@ -27,7 +27,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 builder.setCancelable(false)
                 builder.show()
             end
-
+            
             menu.add("设置URL").onMenuItemClick = function(a)
                 local builder = AlertDialog.Builder(activity)
                 builder.setTitle("设置URL")
@@ -54,7 +54,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 builder.setCancelable(false)
                 builder.show()
             end
-
+            
             menu.add("IP 检查").onMenuItemClick = function(a)
                 local subPop = PopupMenu(activity, more)
                 local subMenu = subPop.Menu
@@ -72,7 +72,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 end
                 subPop.show()
             end
-
+            
             menu.add("切换面板").onMenuItemClick = function(a)
                 local subPop = PopupMenu(activity, more)
                 local subMenu = subPop.Menu
@@ -102,7 +102,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 end
                 subPop.show()
             end
-
+            
             local function getLastCommitTime()
                 Http.get(url .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, content)
                     if code == 200 and content then
@@ -128,49 +128,47 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                     end
                 end)
             end
-
+            
+            local JSONObject = luajava.bindClass("org.json.JSONObject")
+            
             function showVersionInfo(updateTime, updateLog)
                 local ssb = SpannableStringBuilder()
+                
+                local startVersion = ssb.length()
                 local metadataTitle = "Version " .. version .. "\n"
-                local startVersion = #ssb
                 ssb.append(metadataTitle)
-                local endVersion = #ssb
+                local endVersion = ssb.length()
                 ssb.setSpan(StyleSpan(Typeface.BOLD), startVersion, endVersion, 0)
                 ssb.setSpan(ForegroundColorSpan(0xFF000000), startVersion, endVersion, 0)
                 ssb.setSpan(RelativeSizeSpan(1.2), startVersion, endVersion, 0)
- 
+                
+                local startTimestamp = ssb.length()
                 local timestamp = "Timestamp：" .. updateTime .. "\n\n"
-                local startTimestamp = #ssb
                 ssb.append(timestamp)
-                local endTimestamp = #ssb
+                local endTimestamp = ssb.length()
                 ssb.setSpan(ForegroundColorSpan(0xFF444444), startTimestamp, endTimestamp, 0)
-
+                
+                local startLog = ssb.length()
                 local updateLogTitle = "更新日志:\n"
-                local startLog = #ssb
                 ssb.append(updateLogTitle)
-                local endLog = #ssb
+                local endLog = ssb.length()
                 ssb.setSpan(StyleSpan(Typeface.BOLD), startLog, endLog, 0)
                 ssb.setSpan(ForegroundColorSpan(0xFF000000), startLog, endLog, 0)
                 ssb.setSpan(RelativeSizeSpan(1), startLog, endLog, 0)
-
-                local logContent = (updateLog or "暂无更新日志...") .. "\n\n\n"
-                local startContent = #ssb
+                
+                local startContent = ssb.length()
+                local logContent = (updateLog or "暂无更新日志...") .. "\n\n"
                 ssb.append(logContent)
-                local endContent = #ssb
+                local endContent = ssb.length()
                 ssb.setSpan(ForegroundColorSpan(0xFF888888), startContent, endContent, 0)
                 ssb.setSpan(RelativeSizeSpan(0.9), startContent, endContent, 0)
-
-                local copyrightText = "@Surfing Webbrowser 2023."
-                local startCopyright = #ssb
-                ssb.append(copyrightText)
-                local endCopyright = #ssb
-                ssb.setSpan(ForegroundColorSpan(0xFF444444), startCopyright, endCopyright, 0)
-
+                
                 local textView = TextView(activity)
                 textView.setText(ssb)
                 textView.setTextSize(15)
                 textView.setPadding(50, 30, 50, 30)
-
+                textView.setTextIsSelectable(true)
+                
                 local builder = AlertDialog.Builder(activity)
                 builder.setView(textView)
                 builder.setNegativeButton("Git", function(dialog, which)
@@ -181,18 +179,53 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 end)
                 builder.setNeutralButton("取消", nil)
                 builder.setCancelable(false)
-                builder.show()
+                local dialog = builder.show()
+                
+                Http.get("https://api.ip.sb/geoip", nil, "UTF-8", headers, function(geoCode, geoContent)
+                    if geoCode == 200 and geoContent then
+                        local obj = JSONObject(geoContent)
+                        local timezone = obj.optString("timezone", "未知")
+                        local isp = obj.optString("isp", "未知")
+                        local asn = obj.optInt("asn", 0)
+                        local ip = obj.optString("ip", "未知")
+                        
+                        local startGeo = ssb.length()
+                        local geoInfo = "\n" ..
+                                      "" .. timezone .. "\n" ..
+                                      "" .. isp .. "\n" ..
+                                      "ASN: " .. asn .. "\n" ..
+                                      "IPv4: " .. ip .. "\n"
+                        
+                        Http.get("https://api-ipv6.ip.sb/ip", nil, "UTF-8", headers, function(ipv6Code, ipv6Content)
+                            if ipv6Code == 200 and ipv6Content and ipv6Content:match("%S") then
+                                geoInfo = geoInfo .. "IPv6: " .. ipv6Content:gsub("%s+", "") .. "\n"
+                            end
+                            
+                            ssb.append(geoInfo)
+                            local endGeo = ssb.length()
+                            ssb.setSpan(ForegroundColorSpan(0xFF444444), startGeo, endGeo, 0)
+                            textView.setText(ssb)
+                            
+                            local startCopyright = ssb.length()
+                            local copyrightText = "\n@Surfing Webbrowser 2023."
+                            ssb.append(copyrightText)
+                            local endCopyright = ssb.length()
+                            ssb.setSpan(ForegroundColorSpan(0xFF444444), startCopyright, endCopyright, 0)
+                            textView.setText(ssb)
+                        end)
+                    end
+                end)
             end
-
+            
             menu.add("版本信息").onMenuItemClick = function(a)
                 getLastCommitTime()
             end
-
+            
             menu.add("点我闪退(Exit)").onMenuItemClick = function(a)
                 activity.finish()
                 os.exit(0)
             end
-
+            
             if pushNotification == "开" then
                 menu.add(menuTitle).onMenuItemClick = function(a)
                     Toast.makeText(activity, "正在拉取中...", Toast.LENGTH_SHORT).show()
