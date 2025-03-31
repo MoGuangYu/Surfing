@@ -66,6 +66,10 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                     local url = "https://ipv6.test-ipv6.com/"
                     webView.loadUrl(url)
                 end
+                subMenu.add("网站延迟").onMenuItemClick = function(b)
+                    local url = "https://ip.skk.moe/simple"
+                    webView.loadUrl(url)
+                end
                 subPop.show()
             end
 
