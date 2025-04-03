@@ -36,7 +36,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 input.setHint("http:// 或 https:// 开头...")
                 builder.setView(input)
                 builder.setPositiveButton("确定", function(dialog, which)
-                    local url = input.getText():toString()
+                    local url = input.getText().toString()
                     if url ~= "" and string.match(url, "^https?://[%w%._%-]+[%w%._%/?&%=%-]*") then
                         defaultUrl = url
                         webView.loadUrl(defaultUrl)
