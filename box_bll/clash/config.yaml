@@ -110,7 +110,7 @@ sniffer:
 # ==== Tips
 # 1. v7.4.3 已弃用
 tun:
-  enable: false  #true 开 #false 关 
+  enable: false  #true 开 #false 关
   device: meta
   stack: gvisor
   dns-hijack:
@@ -121,7 +121,7 @@ tun:
   strict-route: true
   auto-redirect: false
   auto-detect-interface: true
-  exclude-package: 
+  exclude-package:
     #- com.tencent.tmgp.sgame
     # _____________________# 三星专供 ↓ 范围
 #    - com.samsung.android.messaging
@@ -135,7 +135,7 @@ tun:
 #    - com.sec.epdg
 #    - com.sec.imsservice # 三星专供 ↑ 范围
     # 非三星用户不必理会，三星用户可自行取消注释
-    
+
 # —————————
 
 # DNS模块
@@ -151,15 +151,11 @@ dns:
     - "localhost.ptlogin2.qq.com"
     - "+.mtalk.google.com"
   direct-nameserver:
-    - https://doh.pub/dns-query#🌎 全球直连
-    - https://dns.alidns.com/dns-query#🌎 全球直连&h3=true
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query#h3=true
   proxy-server-nameserver:
-    - https://doh.pub/dns-query#🌎 全球直连
-    - https://dns.alidns.com/dns-query#🌎 全球直连&h3=true
-  nameserver-policy:
-    "RULE-SET:CN_域名":
-       - https://doh.pub/dns-query#🌎 全球直连
-       - https://dns.alidns.com/dns-query#🌎 全球直连&h3=true
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query#h3=true
   nameserver:
     - https://dns.google/dns-query#DNS解析&h3=true
     - https://cloudflare-dns.com/dns-query#DNS解析&h3=true
@@ -207,11 +203,11 @@ proxy-groups:
   - name: Telegram
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Telegram.svg"
     <<: *proxy_groups
-    
+
   - name: Apple
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Apple.svg"
     <<: *proxy_groups
-    
+
   - name: Microsoft
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Microsoft.svg"
     <<: *proxy_groups
