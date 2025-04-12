@@ -157,7 +157,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 ssb.setSpan(RelativeSizeSpan(1), startLog, endLog, 0)
                 
                 local startContent = ssb.length()
-                local logContent = (updateLog or "暂无更新日志...") .. "\n\n"
+                local logContent = (updateLog or "当前网络环境异常...") .. "\n\n"
                 ssb.append(logContent)
                 local endContent = ssb.length()
                 ssb.setSpan(ForegroundColorSpan(0xFF888888), startContent, endContent, 0)
