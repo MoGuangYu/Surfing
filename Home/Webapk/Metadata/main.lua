@@ -74,6 +74,10 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                     local url = "https://www.browserscan.net/zh/dns-leak"
                     webView.loadUrl(url)
                 end
+                subMenu.add("DNS泄露测试").onMenuItemClick = function(b)
+                    local url = "https://surfshark.com/zh/dns-leak-test"
+                    webView.loadUrl(url)
+                end
                 subPop.show()
             end
             
