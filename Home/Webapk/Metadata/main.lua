@@ -242,7 +242,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 if isNetworkAvailable() then
                    getLastCommitTime()
                 else
-                   Toast.makeText(activity, "请检查网络连接", 0).show()
+                   Toast.makeText(activity, "当前网络不可用！", 0).show()
                 end
             end
             
