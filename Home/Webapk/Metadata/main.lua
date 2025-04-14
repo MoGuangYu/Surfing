@@ -8,6 +8,8 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
     if code == 200 and content then
         local pushNotification = content:match("推送通知:%s*(.-)\n") or "关"
         local menuTitle = content:match("菜单标题:%s*(.-)\n") or "信息通知"
+        local version = content:match("推送版本号:%s*(.-)\n") or "获取失败..."
+        local updateLog = content:match("更新内容：%s*(.-)\n?}%s*") or "获取失败..."
         
         more.onClick = function()
             local pop = PopupMenu(activity, more)
@@ -194,7 +196,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                         local obj = JSONObject(geoContent)
                         local timezone = obj.optString("timezone", "获取失败...")
                         local isp = obj.optString("isp", "获取失败...")
-                        local asn = obj.opttring("asn", "获取失败...")
+                        local asn = obj.optInt("asn", 0)
                         local ip = obj.optString("ip", "获取失败...")
                         
                         local startGeo = ssb.length()
