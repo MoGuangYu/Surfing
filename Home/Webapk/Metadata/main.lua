@@ -6,7 +6,6 @@ end
 
 Http.get(url1 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, content)
     if code == 200 and content then
-        version = content:match("推送版本号:%s*(.-)\n") or "获取失败..."
         version1 = content:match("推送版本号:%s*(.-)\n") or ""
         updateLog = content:match("更新内容：%s*(.-)\n?}%s*") or "获取失败..."
     end
