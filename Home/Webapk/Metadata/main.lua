@@ -151,7 +151,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 ssb.setSpan(RelativeSizeSpan(1.2), startVersion, endVersion, 0)
                 
                 local startTimestamp = ssb.length()
-                local timestamp = "Timestamp：" .. updateTime .. "v6.3.7\n\n"
+                local timestamp = "Timestamp：" .. updateTime .. " v" .. version .. "\n\n"
                 ssb.append(timestamp)
                 local endTimestamp = ssb.length()
                 ssb.setSpan(ForegroundColorSpan(0xFF444444), startTimestamp, endTimestamp, 0)
