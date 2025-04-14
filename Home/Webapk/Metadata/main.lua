@@ -165,7 +165,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 ssb.setSpan(RelativeSizeSpan(1), startLog, endLog, 0)
                 
                 local startContent = ssb.length()
-                local logContent = (updateLog or "当前网络环境异常...") .. "\n\n"
+                local logContent = (updateLog or "获取失败...") .. "\n\n"
                 ssb.append(logContent)
                 local endContent = ssb.length()
                 ssb.setSpan(ForegroundColorSpan(0xFF888888), startContent, endContent, 0)
@@ -192,10 +192,10 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 Http.get("https://api.ip.sb/geoip", nil, "UTF-8", headers, function(geoCode, geoContent)
                     if geoCode == 200 and geoContent then
                         local obj = JSONObject(geoContent)
-                        local timezone = obj.optString("timezone", "未知")
-                        local isp = obj.optString("isp", "未知")
-                        local asn = obj.optInt("asn", 0)
-                        local ip = obj.optString("ip", "未知")
+                        local timezone = obj.optString("timezone", "获取失败...")
+                        local isp = obj.optString("isp", "获取失败...")
+                        local asn = obj.opttring("asn", "获取失败...")
+                        local ip = obj.optString("ip", "获取失败...")
                         
                         local startGeo = ssb.length()
                         local geoInfo = "\n" ..
