@@ -6,9 +6,9 @@ end
 
 Http.get(url1 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, content)
     if code == 200 and content then
-        local version = content:match("推送版本号:%s*(.-)\n") or "获取失败..."
-        local version1 = content:match("推送版本号:%s*(.-)\n") or ""
-        local updateLog = content:match("更新内容：%s*(.-)\n?}%s*") or "获取失败..."
+        version = content:match("推送版本号:%s*(.-)\n") or "获取失败..."
+        version1 = content:match("推送版本号:%s*(.-)\n") or ""
+        updateLog = content:match("更新内容：%s*(.-)\n?}%s*") or "获取失败..."
     end
 end)
 
@@ -175,7 +175,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 ssb.setSpan(RelativeSizeSpan(1), startLog, endLog, 0)
                 
                 local startContent = ssb.length()
-                local logContent = (updateLog or "获取失败...") .. "\n\n"
+                local logContent = (updateLog) .. "\n\n"
                 ssb.append(logContent)
                 local endContent = ssb.length()
                 ssb.setSpan(ForegroundColorSpan(0xFF888888), startContent, endContent, 0)
