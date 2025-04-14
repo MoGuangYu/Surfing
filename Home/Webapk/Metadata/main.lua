@@ -4,6 +4,12 @@ if _G.Remotehotupdate == "false" then
     return _G.Remotehotupdate
 end
 
+function isNetworkAvailable()
+    local connectivityManager = activity.getSystemService(Context.CONNECTIVITY_SERVICE)
+    local activeNetwork = connectivityManager.getActiveNetworkInfo()
+    return activeNetwork ~= nil and activeNetwork.isConnected()
+end
+
 Http.get(url1 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, content)
     if code == 200 and content then
         version1 = content:match("推送版本号:%s*(.-)\n") or ""
@@ -233,7 +239,11 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
             end
             
             menu.add("版本信息").onMenuItemClick = function(a)
-                getLastCommitTime()
+                if isNetworkAvailable() then
+                   getLastCommitTime()
+                else
+                   Toast.makeText(activity, "请检查网络连接", 0).show()
+                end
             end
             
             menu.add("点我闪退(Exit)").onMenuItemClick = function(a)
