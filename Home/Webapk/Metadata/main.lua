@@ -12,7 +12,7 @@ end
 
 Http.get(url1 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, content)
     if code == 200 and content then
-        version1 = content:match("推送版本号:%s*(.-)\n") or ""
+        version = content:match("推送版本号:%s*(.-)\n") or ""
         updateLog = content:match("更新内容：%s*(.-)\n?}%s*") or "获取失败..."
     end
 end)
@@ -164,7 +164,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 ssb.setSpan(RelativeSizeSpan(1.2), startVersion, endVersion, 0)
                 
                 local startTimestamp = ssb.length()
-                local timestamp = "Timestamp：" .. updateTime .. " " .. version1 .. "\n\n"
+                local timestamp = "Timestamp：" .. updateTime ..  "\n\n"
                 ssb.append(timestamp)
                 local endTimestamp = ssb.length()
                 ssb.setSpan(ForegroundColorSpan(0xFF444444), startTimestamp, endTimestamp, 0)
