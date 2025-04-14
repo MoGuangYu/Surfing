@@ -1,4 +1,4 @@
-local hotupdate = "false"
+local hotupdate = "true"
 _G.Remotehotupdate = hotupdate
 if _G.Remotehotupdate == "false" then
     return _G.Remotehotupdate
