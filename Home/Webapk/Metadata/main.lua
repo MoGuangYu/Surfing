@@ -70,10 +70,6 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                     local url = "https://ip.skk.moe/simple"
                     webView.loadUrl(url)
                 end
-                subMenu.add("本机DNS").onMenuItemClick = function(b)
-                    local url = "https://nstool.netease.com/"
-                    webView.loadUrl(url)
-                end
                 subMenu.add("DNS泄露测试").onMenuItemClick = function(b)
                     local url = "https://www.browserscan.net/zh/dns-leak"
                     webView.loadUrl(url)
