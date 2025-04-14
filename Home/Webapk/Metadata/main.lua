@@ -238,7 +238,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 end)
             end
             
-            menu.add("版本信息").onMenuItemClick = function(a)
+            menu.add("Metadate").onMenuItemClick = function(a)
                 if isNetworkAvailable() then
                    getLastCommitTime()
                 else
