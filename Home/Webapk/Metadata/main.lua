@@ -164,7 +164,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 ssb.setSpan(RelativeSizeSpan(1.2), startVersion, endVersion, 0)
                 
                 local startVerText = ssb.length()
-                ssb.append("Releases：" .. version .. "\n")
+                ssb.append("Latestreleases " .. version .. "\n")
                 local endVerText = ssb.length()
                 ssb.setSpan(ForegroundColorSpan(0xFF222222), startVerText, endVerText, 0)
                 ssb.setSpan(RelativeSizeSpan(1.0), startVerText, endVerText, 0)
