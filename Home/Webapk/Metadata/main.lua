@@ -156,12 +156,18 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 local ssb = SpannableStringBuilder()
                 
                 local startVersion = ssb.length()
-                local metadataTitle = "Releases " .. version .. "\n"
+                local metadataTitle = "Metadate\n"
                 ssb.append(metadataTitle)
                 local endVersion = ssb.length()
                 ssb.setSpan(StyleSpan(Typeface.BOLD), startVersion, endVersion, 0)
                 ssb.setSpan(ForegroundColorSpan(0xFF000000), startVersion, endVersion, 0)
                 ssb.setSpan(RelativeSizeSpan(1.2), startVersion, endVersion, 0)
+                
+                local startVerText = ssb.length()
+                ssb.append("Releases：" .. version .. "\n")
+                local endVerText = ssb.length()
+                ssb.setSpan(ForegroundColorSpan(0xFF222222), startVerText, endVerText, 0)
+                ssb.setSpan(RelativeSizeSpan(1.0), startVerText, endVerText, 0)
                 
                 local startTimestamp = ssb.length()
                 local timestamp = "Timestamp：" .. updateTime ..  "\n\n"
