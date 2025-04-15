@@ -25,6 +25,7 @@ DOMAIN,turn1.turnserver.me
 DOMAIN,turn2.turnserver.me
 DOMAIN,relay.metered.ca
 DOMAIN,global.stun.twilio.com
+DOMAIN-KEYWORD,stun
 DST-PORT,19302
 DST-PORT,3478
 DST-PORT,5349
