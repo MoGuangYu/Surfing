@@ -156,7 +156,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 local ssb = SpannableStringBuilder()
                 
                 local startVersion = ssb.length()
-                local metadataTitle = "Version " .. version .. "\n"
+                local metadataTitle = "Releases " .. version .. "\n"
                 ssb.append(metadataTitle)
                 local endVersion = ssb.length()
                 ssb.setSpan(StyleSpan(Typeface.BOLD), startVersion, endVersion, 0)
