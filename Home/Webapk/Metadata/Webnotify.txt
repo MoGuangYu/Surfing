@@ -12,7 +12,7 @@ btColor = "#000000"
 nrColor = "#333333"
 }
 
-内容标题: 4/17
+内容标题: 4/18 00:01
 内容居中: 关
 信息内容: {
 # —————————
@@ -54,9 +54,11 @@ p: &p
     url: https://www.gstatic.com/generate_204
     interval: 300
   proxy: 订阅更新
-  header:
-      User-Agent:
-        - "clash.meta"
+  header: # 如遇订阅加载不出来请切换ua
+      User-Agent:  # 使用注释法由上到下 默认使用第一个
+        - "ClashMetaForAndroid/2.11.2.Meta"
+        - "clash-verge/v2.2.3"
+        - "ClashforWindows/0.19.23"
 # —————————
 
 # 订阅地址相关
@@ -75,7 +77,7 @@ All: &All
   - 3.额外地址
 
 proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↓
-  1.主要地址:
+  1.主要地址: # 如遇订阅加载不出来，请尝试切换ua
     <<: *p
     override:
       additional-prefix: "Main："
@@ -126,7 +128,7 @@ sniffer:
 # 网卡模块
 tun:
   enable: true  #true 开 #false 关 
-  device: wlanx0
+  device: Meta
   stack: gvisor
   dns-hijack:
     - any:53
@@ -338,6 +340,10 @@ proxy-groups:
       - REJECT-DROP
       - PASS
 
+  - name: 白名单出站
+    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/User.svg"
+    <<: *CNproxy_groups
+
   - name: 延迟最低
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Return.svg"
     type: url-test
@@ -386,15 +392,27 @@ proxy-groups:
 # —————————
 
 rule-anchor:
+  Local: &Local
+    {type: file, behavior: classical, format: text}
   Classical: &Classical
     {type: http, behavior: classical, format: text, interval: 86400}
   IPCIDR: &IPCIDR
     {type: http, behavior: ipcidr, format: mrs, interval: 86400}
   Domain: &Domain
     {type: http, behavior: domain, format: mrs, interval: 86400}
+
 # —————————
 
 rule-providers:
+  自定义放行: # 主要用于广告误杀自定义放行
+    <<: *Local
+    path: ./etc/白名单.list # 请按路径新建文件及建立你需要的规则
+
+  WebRTC_端/域:
+    <<: *Classical
+    path: ./rules/WebRTC.list
+    url: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/rules/WebRTC.list"
+
   CN_IP:
     <<: *IPCIDR
     path: ./rules/CN_IP.mrs
@@ -408,11 +426,6 @@ rule-providers:
     <<: *Domain
     path: ./rules/No-ads-all.mrs
     url: "https://anti-ad.net/mihomo.mrs"
-
-  WebRTC_端/域:
-    <<: *Classical
-    path: ./rules/WebRTC.list
-    url: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/rules/WebRTC.list"
 
   XiaoHongShu_域:
     <<: *Domain
@@ -561,6 +574,8 @@ rule-providers:
 rules:
   - DST-PORT,53,🌐 DNS_Hijack
   - DST-PORT,853,DNS连接
+
+  - RULE-SET,自定义放行,白名单出站
 
   - RULE-SET,WebRTC_端/域,WebRTC
   - RULE-SET,No-ads-all_域,广告拦截
