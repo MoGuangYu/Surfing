@@ -1,5 +1,5 @@
 推送通知: 开
-菜单标题: 新配置4/18 00:05
+菜单标题: 新配置4/18 02:16
 
 深色主题: 关{
 then
@@ -161,7 +161,7 @@ dns:
   enable: true
   ipv6: true
   listen: 0.0.0.0:1053
-  enhanced-mode: redir-host
+  enhanced-mode: fake-ip
   fake-ip-range: 172.20.0.1/16
   fake-ip-filter:
     - "RULE-SET:CN_域,LAN_域,GoogleFCM_域"
@@ -570,7 +570,12 @@ rule-providers:
     path: ./rules/LAN_IP.mrs
     url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 # —————————
-
+sub-rules:
+  GoogleFCM-Sub:
+    - DST-PORT,5228,GoogleFCM
+    - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
+    - RULE-SET,GoogleFCM_域,GoogleFCM
+    - RULE-SET,GoogleFCM_IP,GoogleFCM
 rules:
   - DST-PORT,53,🌐 DNS_Hijack
   - DST-PORT,853,DNS连接
@@ -617,11 +622,7 @@ rules:
   - RULE-SET,OpenAI_IP,OpenAI
 
   - DST-PORT,5228,GoogleFCM
-  - RULE-SET,GoogleFCM_域,GoogleFCM
-  - RULE-SET,GoogleFCM_IP,GoogleFCM
-
-  - RULE-SET,Google_域,Google
-  - RULE-SET,Google_IP,Google
+  - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
 
   - RULE-SET,Apple_域,Apple
   - RULE-SET,Apple_IP,Apple
@@ -640,6 +641,7 @@ rules:
 
   - MATCH,漏网之鱼
 # —————————
+
 
 }
 
