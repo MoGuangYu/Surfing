@@ -25,7 +25,9 @@ DOMAIN,turn1.turnserver.me
 DOMAIN,turn2.turnserver.me
 DOMAIN,relay.metered.ca
 DOMAIN,global.stun.twilio.com
+DOMAIN,stun.nextcloud.com
 DST-PORT,19302
 DST-PORT,3478
 DST-PORT,5349
 DST-PORT,10000
+DST-PORT,5350
