@@ -1,5 +1,5 @@
-推送通知: 关
-菜单标题: 4/19 12:39
+推送通知: 开
+菜单标题: 漏网规则完善
 
 深色主题: 关{
 then
@@ -12,25 +12,12 @@ btColor = "#000000"
 nrColor = "#333333"
 }
 
-内容标题: 添加5228端口还原FCM域名绑定
+内容标题: TikTok避免漏网
 内容居中: 关
 信息内容: {
-sniffer:
-  enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  override-destination: true
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-    TLS:
-      ports: [443, 5228, 8443]
-    QUIC:
-      ports: [443, 8443]
-  force-domain:
-    - "+.v2ex.com"
-  skip-domain:
-    - "Mijia Cloud"
+  - PROCESS-PATH,com.zhiliaoapp.musically,TikTok
+  - DOMAIN-KEYWORD,tiktokcdn,TikTok
+  - RULE-SET,TikTok_域,TikTok
 }
 
 按钮标题: 确定
