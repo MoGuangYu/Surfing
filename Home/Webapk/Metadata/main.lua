@@ -68,6 +68,11 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 builder.show()
             end
             
+            Menu.add("Ad 拦截测试").onMenuItemClick = function(b)
+                local url = "https://paileactivist.github.io/toolz/adblock.html"
+                webView.loadUrl(url)
+            end
+            
             menu.add("IP 检查").onMenuItemClick = function(a)
                 local subPop = PopupMenu(activity, more)
                 local subMenu = subPop.Menu
