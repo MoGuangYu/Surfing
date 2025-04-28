@@ -68,7 +68,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 builder.show()
             end
             
-            Menu.add("Ad 拦截测试").onMenuItemClick = function(b)
+            menu.add("Ad 拦截测试").onMenuItemClick = function(b)
                 local url = "https://paileactivist.github.io/toolz/adblock.html"
                 webView.loadUrl(url)
             end
