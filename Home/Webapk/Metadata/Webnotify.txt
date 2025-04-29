@@ -1,5 +1,5 @@
-推送通知: 关
-菜单标题: 漏网规则完善
+推送通知: 开
+菜单标题: 解决GitHub429
 
 深色主题: 关{
 then
@@ -12,12 +12,10 @@ btColor = "#000000"
 nrColor = "#333333"
 }
 
-内容标题: TikTok避免漏网
+内容标题: 添加至clash/config.yaml
 内容居中: 关
 信息内容: {
-  - PROCESS-PATH,com.zhiliaoapp.musically,TikTok
-  - DOMAIN-KEYWORD,tiktokcdn,TikTok
-  - RULE-SET,TikTok_域,TikTok
+global-ua: "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36 Accept-Language: en-US,en;q=0.9"
 }
 
 按钮标题: 确定

@@ -1,4 +1,4 @@
-推送版本号: v6.3.9
+推送版本号: v6.4.0
 
 更新日志: {
 更新内容：
@@ -8,7 +8,10 @@ v6.3.8
 
 v6.3.9
 解决异常卡死
+
+v6.4.0
+解决GitHub-429访问限制
 }
 
 强制更新: 关
-下载链接: https://github.com/MoGuangYu/Surfing/raw/refs/heads/rm/Home/Webapk/Version/Web_6.3.9_release.apk
+下载链接: https://github.com/MoGuangYu/Surfing/raw/refs/heads/rm/Home/Webapk/Version/Web_6.4.0_release.apk
