@@ -12,7 +12,7 @@ btColor = "#000000"
 nrColor = "#333333"
 }
 
-内容标题: cdn.jsdelivr托管
+内容标题: cdn.jsdelivr托管详情见: https://www.landiannews.com/archives/108910.html
 内容居中: 关
 信息内容: {
 proxy-groups:
