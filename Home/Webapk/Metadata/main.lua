@@ -157,7 +157,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
             
             local JSONObject = luajava.bindClass("org.json.JSONObject")
             
-            function showVersionInfo(updateTime, updateLog)
+            function showVersionInfo(updateTime)
               local layout = LinearLayout(activity)
               layout.setOrientation(1)
               layout.setPadding(60, 10, 60, 10)
