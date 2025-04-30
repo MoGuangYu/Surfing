@@ -12,7 +12,7 @@ end
 
 Http.get(url1 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, content)
     if code == 200 and content then
-        version = content:match("推送版本号:%s*(.-)\n") or ""
+        version = content:match("推送版本号:%s*(.-)\n") or "未知"
         updateLog = content:match("更新内容：%s*(.-)\n?}%s*") or "获取失败..."
     end
 end)
@@ -158,95 +158,85 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
             local JSONObject = luajava.bindClass("org.json.JSONObject")
             
             function showVersionInfo(updateTime, updateLog)
-                local ssb = SpannableStringBuilder()
-                
-                local startVersion = ssb.length()
-                local metadataTitle = "Metadate\n"
-                ssb.append(metadataTitle)
-                local endVersion = ssb.length()
-                ssb.setSpan(StyleSpan(Typeface.BOLD), startVersion, endVersion, 0)
-                ssb.setSpan(ForegroundColorSpan(0xFF000000), startVersion, endVersion, 0)
-                ssb.setSpan(RelativeSizeSpan(1.2), startVersion, endVersion, 0)
-                
-                local startVerText = ssb.length()
-                ssb.append("Latestreleases " .. version .. "\n")
-                local endVerText = ssb.length()
-                ssb.setSpan(ForegroundColorSpan(0xFF222222), startVerText, endVerText, 0)
-                ssb.setSpan(RelativeSizeSpan(1.0), startVerText, endVerText, 0)
-                
-                local startTimestamp = ssb.length()
-                local timestamp = "Timestamp：" .. updateTime ..  "\n\n"
-                ssb.append(timestamp)
-                local endTimestamp = ssb.length()
-                ssb.setSpan(ForegroundColorSpan(0xFF444444), startTimestamp, endTimestamp, 0)
-                
-                local startLog = ssb.length()
-                local updateLogTitle = "更新日志:\n"
-                ssb.append(updateLogTitle)
-                local endLog = ssb.length()
-                ssb.setSpan(StyleSpan(Typeface.BOLD), startLog, endLog, 0)
-                ssb.setSpan(ForegroundColorSpan(0xFF000000), startLog, endLog, 0)
-                ssb.setSpan(RelativeSizeSpan(1), startLog, endLog, 0)
-                
-                local startContent = ssb.length()
-                local logContent = (updateLog) .. "\n\n"
-                ssb.append(logContent)
-                local endContent = ssb.length()
-                ssb.setSpan(ForegroundColorSpan(0xFF888888), startContent, endContent, 0)
-                ssb.setSpan(RelativeSizeSpan(0.9), startContent, endContent, 0)
-                
-                local textView = TextView(activity)
-                textView.setText(ssb)
-                textView.setTextSize(15)
-                textView.setPadding(50, 30, 50, 30)
-                textView.setTextIsSelectable(true)
-                
-                local builder = AlertDialog.Builder(activity)
-                builder.setView(textView)
-                builder.setNegativeButton("Git", function(dialog, which)
-                    activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/MoGuangYu/Surfing")))
-                end)
-                builder.setPositiveButton("少儿频道", function(dialog, which)
-                    activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/+vvlXyWYl6HowMTBl")))
-                end)
-                builder.setNeutralButton("取消", nil)
-                builder.setCancelable(false)
-                local dialog = builder.show()
-                
-                Http.get("https://api.ip.sb/geoip", nil, "UTF-8", headers, function(geoCode, geoContent)
-                    if geoCode == 200 and geoContent then
-                        local obj = JSONObject(geoContent)
-                        local timezone = obj.optString("timezone", "获取失败...")
-                        local isp = obj.optString("isp", "获取失败...")
-                        local asn = obj.optInt("asn", 0)
-                        local ip = obj.optString("ip", "获取失败...")
-                        
-                        local startGeo = ssb.length()
-                        local geoInfo = "\n" ..
-                                      "" .. timezone .. "\n" ..
-                                      "" .. isp .. "\n" ..
-                                      "ASN: " .. asn .. "\n" ..
-                                      "IPv4: " .. ip .. "\n"
-                        
-                        Http.get("https://api-ipv6.ip.sb/ip", nil, "UTF-8", headers, function(ipv6Code, ipv6Content)
-                            if ipv6Code == 200 and ipv6Content and ipv6Content:match("%S") then
-                                geoInfo = geoInfo .. "IPv6: " .. ipv6Content:gsub("%s+", "") .. "\n"
-                            end
-                            
-                            ssb.append(geoInfo)
-                            local endGeo = ssb.length()
-                            ssb.setSpan(ForegroundColorSpan(0xFF444444), startGeo, endGeo, 0)
-                            textView.setText(ssb)
-                            
-                            local startCopyright = ssb.length()
-                            local copyrightText = "\n@Surfing Webbrowser 2023."
-                            ssb.append(copyrightText)
-                            local endCopyright = ssb.length()
-                            ssb.setSpan(ForegroundColorSpan(0xFF444444), startCopyright, endCopyright, 0)
-                            textView.setText(ssb)
-                        end)
+              local layout = LinearLayout(activity)
+              layout.setOrientation(1)
+              layout.setPadding(60, 10, 60, 10)
+            
+              local function addStyledText(text, size, color, bold)
+                local tv = TextView(activity)
+                tv.setText(text)
+                tv.setTextSize(size)
+                tv.setTextColor(color)
+                tv.setTextIsSelectable(false)
+                if bold then
+                  tv.setTypeface(nil, Typeface.BOLD)
+                end
+                layout.addView(tv)
+                return tv
+              end
+            
+              addStyledText("Metadate", 18, 0xFF000000, true)
+              addStyledText("Latestreleases " .. version, 15, 0xFF222222)
+              addStyledText("Timestamp: " .. updateTime, 14, 0xFF444444)
+              addStyledText("\n更新日志:", 16, 0xFF000000, true)
+            
+              local scrollView = ScrollView(activity)
+              scrollView.setScrollbarFadingEnabled(false)
+              scrollView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_INSET)  -- 滚动条靠右外侧
+              scrollView.setPadding(20, 5, 20, 5)
+            
+              local logText = TextView(activity)
+              logText.setText(updateLog)
+              logText.setTextSize(13)
+              logText.setTextColor(0xFF888888)
+              logText.setPadding(0, 10, 0, 10)
+              logText.setLineSpacing(1.5, 1.2)
+              logText.setTextIsSelectable(true)
+            
+              scrollView.addView(logText)
+            
+              local dp = activity.getResources().getDisplayMetrics().density
+              local layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                math.floor(200 * dp + 0.5)
+              )
+              scrollView.setLayoutParams(layoutParams)
+            
+              layout.addView(scrollView)
+            
+              local builder = AlertDialog.Builder(activity)
+              builder.setView(layout)
+              builder.setNegativeButton("Git", function()
+                activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/MoGuangYu/Surfing")))
+              end)
+              builder.setPositiveButton("少儿频道", function()
+                activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/+vvlXyWYl6HowMTBl")))
+              end)
+              builder.setNeutralButton("取消", nil)
+              builder.setCancelable(false)
+              local dialog = builder.show()
+            
+              Http.get("https://api.ip.sb/geoip", nil, "UTF-8", headers, function(geoCode, geoContent)
+                if geoCode == 200 and geoContent then
+                  local obj = JSONObject(geoContent)
+                  local timezone = obj.optString("timezone", "获取失败...")
+                  local isp = obj.optString("isp", "获取失败...")
+                  local asn = obj.optInt("asn", 0)
+                  local ip = obj.optString("ip", "获取失败...")
+            
+                  addStyledText("\n" .. timezone, 14, 0xFF444444)
+                  addStyledText(isp, 14, 0xFF444444)
+                  addStyledText("ASN: " .. asn, 14, 0xFF444444)
+                  addStyledText("IPv4: " .. ip, 14, 0xFF444444)
+            
+                  Http.get("https://api-ipv6.ip.sb/ip", nil, "UTF-8", headers, function(ipv6Code, ipv6Content)
+                    if ipv6Code == 200 and ipv6Content and ipv6Content:match("%S") then
+                      addStyledText("IPv6: " .. ipv6Content:gsub("%s+", ""), 14, 0xFF444444)
                     end
-                end)
+                    addStyledText("\n@Surfing Webbrowser 2023.", 16, 0xFF444444)
+                  end)
+                end
+              end)
             end
             
             menu.add("元数据").onMenuItemClick = function(a)
