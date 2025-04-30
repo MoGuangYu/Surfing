@@ -182,7 +182,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
             
               local scrollView = ScrollView(activity)
               scrollView.setScrollbarFadingEnabled(false)
-              scrollView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_INSET)  -- 滚动条靠右外侧
+              scrollView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_INSET)
               scrollView.setPadding(20, 5, 20, 5)
             
               local logText = TextView(activity)
@@ -190,7 +190,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
               logText.setTextSize(13)
               logText.setTextColor(0xFF888888)
               logText.setPadding(0, 10, 0, 10)
-              logText.setLineSpacing(1.5, 1.2)
+              logText.setLineSpacing(1.5, 1)
               logText.setTextIsSelectable(true)
             
               scrollView.addView(logText)
