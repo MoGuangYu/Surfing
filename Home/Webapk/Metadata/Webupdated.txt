@@ -4,7 +4,7 @@
 更新内容：
 v6.4.2
 1、修复下载更新链接跳转错误
-2、请使用复制该链接下载: https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/Webapk/Version/Web_6.4.2_release.apk
+2、请复制该链接进行下载更新: https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/Webapk/Version/Web_6.4.2_release.apk
 
 v6.4.1
 1、纠正一个变量错误
