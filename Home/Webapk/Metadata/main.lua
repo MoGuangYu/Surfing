@@ -69,8 +69,14 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
             end
             
             menu.add("Ad 拦截测试").onMenuItemClick = function(b)
-                local url = "https://paileactivist.github.io/toolz/adblock.html"
-                webView.loadUrl(url)
+              local url = "https://paileactivist.github.io/toolz/adblock.html"
+              webView.loadUrl(url)
+            end
+            
+            menu.add("背景 RUL").onMenuItemClick = function()
+              local intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://pomf2.lain.la/"))
+              activity.startActivity(intent)
+              return true
             end
             
             menu.add("IP 检查").onMenuItemClick = function(a)
