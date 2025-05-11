@@ -41,7 +41,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
                 builder.show()
             end
             
-            menu.add("设置URL").onMenuItemClick = function(a)
+            menu.add("设置 URL").onMenuItemClick = function(a)
                 local builder = AlertDialog.Builder(activity)
                 builder.setTitle("设置URL")
                 builder.setMessage("请输入要设置默认访问的链接：")
