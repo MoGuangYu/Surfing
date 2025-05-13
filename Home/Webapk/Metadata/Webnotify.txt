@@ -1,5 +1,5 @@
-推送通知: 关
-菜单标题: 临时解决策略组图标抽风
+推送通知: 开
+菜单标题: 关于DNS泄露
 
 深色主题: 关{
 then
@@ -12,178 +12,16 @@ btColor = "#000000"
 nrColor = "#333333"
 }
 
-内容标题: cdn.jsdelivr托管详情见: https://www.landiannews.com/archives/108910.html
-内容居中: 关
+内容标题: 何为泄露？
+内容居中: 开
 信息内容: {
-proxy-groups:
-  - name: 总模式
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
-    type: select
-    proxies:
-      - 延迟最低
-      - 故障转移
-      - 负载均衡
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 其它地区
-      - 🇨🇳 瓦洛兰大陆
+Found xx Servers(服务器), 2 ISP(运营商), 1 Location(位置)
 
-  - name: 订阅更新
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Update.svg"
-    type: select
-    proxies:
-      - 🇨🇳 瓦洛兰大陆
-      - 总模式
+也就是说没有出现 CN 则为正常
+1，位置则例如仅出现一个香港 
+2，位置则不管，那只是节点配置不当如没有 CN 即可
 
-  - name: 小红书
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/XiaoHongShu.svg"
-    <<: *CNproxy_groups
-
-  - name: 抖音
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/DouYin.svg"
-    <<: *CNproxy_groups
-
-  - name: BiliBili
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/BiliBili.svg"
-    <<: *CNproxy_groups
-
-  - name: Steam
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Steam.svg"
-    <<: *CNproxy_groups
-
-  - name: Apple
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Apple.svg"
-    <<: *CNproxy_groups
-
-  - name: Microsoft
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Microsoft.svg"
-    <<: *CNproxy_groups
-
-  - name: Telegram
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Telegram.svg"
-    <<: *proxy_groups
-
-  - name: Discord
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Discord.svg"
-    <<: *proxy_groups
-
-  - name: Spotify
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Spotify.svg"
-    <<: *proxy_groups
-
-  - name: TikTok
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/TikTok.svg"
-    <<: *proxy_groups
-
-  - name: YouTube
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/YouTube.svg"
-    <<: *proxy_groups
-
-  - name: Netflix
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Netflix.svg"
-    <<: *proxy_groups
-
-  - name: Google
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Google.svg"
-    <<: *proxy_groups
-
-  - name: GoogleFCM
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GoogleFCM.svg"
-    <<: *proxy_groups
-
-  - name: Facebook
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Facebook.svg"
-    <<: *proxy_groups
-
-  - name: OpenAI
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/OpenAI.svg"
-    <<: *proxy_groups
-
-  - name: GitHub
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GitHub.svg"
-    <<: *proxy_groups
-
-  - name: Twitter(X)
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Twitter.svg"
-    <<: *proxy_groups
-
-  - name: DNS连接
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/DNS.svg"
-    <<: *proxy_groups
-
-  - name: 漏网之鱼
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/HBASE-copy.svg"
-    <<: *proxy_groups
-
-  - name: 广告拦截
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/No-ads-all.svg"
-    type: select
-    proxies:
-      - ⛔️ 拒绝连接
-      - 🌐 DNS_Hijack
-      - REJECT-DROP
-      - PASS
-
-  - name: WebRTC
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/WebRTC.svg"
-    type: select
-    proxies:
-      - ⛔️ 拒绝连接
-      - 🌐 DNS_Hijack
-      - REJECT-DROP
-      - PASS
-
-  - name: 白名单出站
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/User.svg"
-    <<: *CNproxy_groups
-
-  - name: 延迟最低
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Return.svg"
-    type: url-test
-    <<: *A
-
-  - name: 故障转移
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Return.svg"
-    type: fallback
-    <<: *A
-
-  - name: 负载均衡
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Return.svg"
-    type: load-balance
-    strategy: round-robin
-    <<: *A
-
-  - name: 台湾节点
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/CN.svg"
-    filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
-    <<: *All
-
-  - name: 香港节点
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/HK.svg"
-    filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
-    <<: *All
-
-  - name: 日本节点
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/JP.svg"
-    filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
-    <<: *All
-
-  - name: 美国节点
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/US.svg"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    <<: *All
-
-  - name: 狮城节点
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Singapore.svg"
-    filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
-    <<: *All
-
-  - name: 其它地区
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Globe.svg"
-    filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
-    <<: *All
+运营商: 
+则列表响应的提供商 例如 Google DNS Cloudflare DNS
 }
 按钮标题: 确定
