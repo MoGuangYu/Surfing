@@ -18,7 +18,6 @@ nrColor = "#333333"
 Found xx Servers(服务器)
 2 ISP(运营商)
 1 Location(位置)
-
 1 (位置) 则例如仅出现一个香港(节点) 
 2 (位置) 则不管，那可能是节点配置不当
 如列表没有出现 CN 即可为正常
@@ -26,7 +25,6 @@ Found xx Servers(服务器)
 运营商: 
 则列表响应的提供商 例如
 Google DNS Cloudflare DNS
-
 也就是说没有出现 CN DNS 服务器即为正常无论如何
 
 另外 面板设置的图标大小
