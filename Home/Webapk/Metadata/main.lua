@@ -1,4 +1,4 @@
-local hotupdate = "false"
+local hotupdate = "true"
 _G.Remotehotupdate = hotupdate
 if _G.Remotehotupdate == "false" then
     return _G.Remotehotupdate
@@ -212,15 +212,28 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
             
               local builder = AlertDialog.Builder(activity)
               builder.setView(layout)
-              builder.setNegativeButton("Git", function()
-                activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/MoGuangYu/Surfing")))
-              end)
-              builder.setPositiveButton("少儿频道", function()
-                activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/+vvlXyWYl6HowMTBl")))
-              end)
+              builder.setNegativeButton("Git", nil)
+              builder.setPositiveButton("Telegram", nil)
               builder.setNeutralButton("取消", nil)
               builder.setCancelable(false)
               local dialog = builder.show()
+              
+              dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false)
+              dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(View.OnClickListener{
+                onClick = function()
+                  activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/MoGuangYu/Surfing")))
+                end
+              })
+            
+              dialog.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false)
+              dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(View.OnClickListener{
+                onClick = function()
+                  activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/+vvlXyWYl6HowMTBl")))
+                end
+              })
+            
+              dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setAllCaps(false)
+            
             
               Http.get("https://api.ip.sb/geoip", nil, "UTF-8", headers, function(geoCode, geoContent)
                 if geoCode == 200 and geoContent then
