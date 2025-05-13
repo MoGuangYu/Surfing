@@ -28,5 +28,8 @@ Found xx Servers(服务器)
 Google DNS Cloudflare DNS
 
 也就是说没有出现 CN DNS 服务器即为正常无论如何
+
+另外 面板设置的图标大小
+为: 16 间距: 6 食用更佳😋
 }
 按钮标题: 确定
