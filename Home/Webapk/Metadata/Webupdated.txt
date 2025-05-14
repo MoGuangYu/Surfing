@@ -1,7 +1,10 @@
-推送版本号: v6.4.3
+推送版本号: v6.4.4
 
 更新日志: {
 更新内容：
+v6.4.4
+1、优化已知问题...
+
 v6.4.3
 1、优化已知问题...
 
@@ -24,4 +27,4 @@ v6.3.8
 }
 
 强制更新: 关
-下载链接: https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/Webapk/Version/Web_6.4.3_release.apk
+下载链接: https://raw.githubusercontent.com/MoGuangYu/Surfing/rm/Home/Webapk/Version/Web_6.4.4_release.apk
