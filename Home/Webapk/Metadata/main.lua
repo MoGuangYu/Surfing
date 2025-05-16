@@ -221,7 +221,7 @@ Http.get(url2 .. "?t=" .. os.time(), nil, "UTF-8", headers, function(code, conte
               dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false)
               dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(View.OnClickListener{
                 onClick = function()
-                  activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/MoGuangYu/Surfing")))
+                  activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/GitMetaio/Surfing")))
                 end
               })
             
