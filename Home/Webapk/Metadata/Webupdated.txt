@@ -30,4 +30,4 @@ v6.3.8
 }
 
 强制更新: 关
-下载链接: https://raw.githubusercontent.com/MoGuangYu/Surfing/rm/Home/Webapk/Version/Web_6.4.4_release.apk
+下载链接: https://raw.githubusercontent.com/MoGuangYu/Surfing/rm/Home/Webapk/Version/Web_6.4.5_release.apk
